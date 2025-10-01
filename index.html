@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>Império Felino Idle – Surpresas Corrigidas</title>
+<title>Império Felino Idle – Todos os Upgrades</title>
 <style>
   body { font-family: Arial,sans-serif; background:#fff8f0; margin:0; padding:0; text-align:center; color:#2d3436;}
   header {background:#ff7675;color:white;padding:30px;font-size:2em;font-weight:bold;}
@@ -17,7 +17,7 @@
 </style>
 </head>
 <body>
-<header>🐾 Império Felino Idle – Surpresas Automáticas 🐾</header>
+<header>🐾 Império Felino Idle – Todos os Upgrades 🐾</header>
 <main>
 <div class="contador">
 <p>Latas de Atum: <span id="latas">0</span></p>
@@ -75,17 +75,19 @@ function atualizarTela(){
   let lojaHTML="";
   for(let key in game.upgrades){
     let up=game.upgrades[key];
-    // só mostra quando tiver latas suficientes
-    if(game.latas>=Math.floor(up.custo/10)){ 
-      lojaHTML+=`<button onclick="comprarUpgrade('${key}')" ${game.latas<up.custo?"disabled":""}>
-        ${up.nome} (x${up.qtd}) [+${up.bonus}/s] – Custa ${up.custo}
-      </button>`;
-    }
+    // agora todos os upgrades aparecem automaticamente, botão desabilitado se não tiver latas suficientes
+    lojaHTML+=`<button onclick="comprarUpgrade('${key}')" ${game.latas<up.custo?"disabled":""}>
+      ${up.nome} (x${up.qtd}) [+${up.bonus}/s] – Custa ${up.custo}
+    </button>`;
   }
   document.getElementById("loja-botoes").innerHTML=lojaHTML;
 }
 
-function loop(){game.latas+=game.lps*game.mult; atualizarTela(); salvar();}
+function loop(){
+  game.latas+=game.lps*game.mult;
+  atualizarTela();
+  salvar();
+}
 setInterval(loop,1000);
 
 function comprarUpgrade(tipo){
@@ -128,4 +130,3 @@ window.onload=carregar;
 </script>
 </body>
 </html>
-l>
