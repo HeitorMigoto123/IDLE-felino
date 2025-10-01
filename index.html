@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Império Felino Idle</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fff8f0;
+      margin: 0; padding: 0;
+      text-align: center;
+      color: #2d3436;
+    }
+    header {
+      background: #ff7675;
+      color: white;
+      padding: 30px;
+      font-size: 2em;
+      font-weight: bold;
+    }
+    main {
+      padding: 20px;
+      max-width: 800px;
+      margin: auto;
+    }
+    .contador {
+      font-size: 1.5em;
+      margin: 20px 0;
+    }
+    .loja, .rebirth {
+      background: white;
+      margin: 20px auto;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+      text-align: left;
+    }
+    h2 {
+      color: #e17055;
+    }
+    button {
+      display: block;
+      width: 100%;
+      margin: 10px 0;
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      background: #74b9ff;
+      color: white;
+      font-weight: bold;
+      font-size: 1em;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #0984e3;
+    }
+    button:disabled {
+      background: #b2bec3;
+      cursor: not-allowed;
+    }
+    footer {
+      margin-top: 30px;
+      background: #f7b7a3;
+      color: white;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+  <header>🐾 Idle Game do Império Felino 🐾</header>
+  <main>
+    <div class="contador">
+      <p>Latas de Atum: <span id="latas">0</span></p>
+      <p>Produção: <span id="lps">1</span> latas/s</p>
+      <p>Multiplicador: x<span id="mult">1</span></p>
+    </div>
+
+    <div class="loja">
+      <h2>Loja Felina</h2>
+      <button onclick="comprarUpgrade('caçador')" id="btn-cacador">Comprar Gato Caçador (+1/s) – Custa 50</button>
+      <button onclick="comprarUpgrade('exercito')" id="btn-exercito">Comprar Exército de Gatos (+10/s) – Custa 500</button>
+      <button onclick="comprarUpgrade('fabrica')" id="btn-fabrica">Comprar Fábrica de Sachê (+50/s) – Custa 5000</button>
+    </div>
+
+    <div class="rebirth">
+      <h2>Rebirth</h2>
+      <p>Renascendo você perde tudo, mas ganha um multiplicador permanente de produção!</p>
+      <button onclick="rebirth()">Fazer Rebirth – Precisa de 100.000 latas</button>
+    </div>
+  </main>
+  <footer>
+    © 2025 Império Felino – Só quem tem atum é respeitado 🐟
+  </footer>
+
+  <script>
+    let latas = 0;
+    let lps = 1; // latas por segundo
+    let mult = 1;
+    let upgrades = {
+      caçador: { custo: 50, bonus: 1 },
+      exercito: { custo: 500, bonus: 10 },
+      fabrica: { custo: 5000, bonus: 50 }
+    };
+
+    function atualizarTela() {
+      document.getElementById("latas").textContent = Math.floor(latas);
+      document.getElementById("lps").textContent = lps * mult;
+      document.getElementById("mult").textContent = mult;
+    }
+
+    function loop() {
+      latas += lps * mult;
+      atualizarTela();
+    }
+    setInterval(loop, 1000);
+
+    function comprarUpgrade(tipo) {
+      let up = upgrades[tipo];
+      if (latas >= up.custo) {
+        latas -= up.custo;
+        lps += up.bonus;
+        up.custo = Math.floor(up.custo * 1.5); // aumenta custo
+        document.getElementById("btn-" + tipo).textContent =
+          `Comprar ${tipo.charAt(0).toUpperCase() + tipo.slice(1)} (+${up.bonus}/s) – Custa ${up.custo}`;
+      }
+      atualizarTela();
+    }
+
+    function rebirth() {
+      if (latas >= 100000) {
+        latas = 0;
+        lps = 1;
+        mult++;
+        upgrades.caçador.custo = 50;
+        upgrades.exercito.custo = 500;
+        upgrades.fabrica.custo = 5000;
+        document.getElementById("btn-cacador").textContent = "Comprar Gato Caçador (+1/s) – Custa 50";
+        document.getElementById("btn-exercito").textContent = "Comprar Exército de Gatos (+10/s) – Custa 500";
+        document.getElementById("btn-fabrica").textContent = "Comprar Fábrica de Sachê (+50/s) – Custa 5000";
+        atualizarTela();
+        alert("Você renasceu! Seu poder de produção agora é multiplicado por " + mult + "!");
+      }
+    }
+
+    atualizarTela();
+  </script>
+</body>
+</html>
