@@ -1,177 +1,129 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>Império Felino Idle</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #fff8f0;
-      margin: 0; padding: 0;
-      text-align: center;
-      color: #2d3436;
-    }
-    header {
-      background: #ff7675;
-      color: white;
-      padding: 30px;
-      font-size: 2em;
-      font-weight: bold;
-    }
-    main {
-      padding: 20px;
-      max-width: 800px;
-      margin: auto;
-    }
-    .contador {
-      font-size: 1.5em;
-      margin: 20px 0;
-    }
-    .loja, .rebirth {
-      background: white;
-      margin: 20px auto;
-      padding: 20px;
-      border-radius: 15px;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
-      text-align: left;
-    }
-    h2 {
-      color: #e17055;
-    }
-    button {
-      display: block;
-      width: 100%;
-      margin: 10px 0;
-      padding: 10px;
-      border: none;
-      border-radius: 8px;
-      background: #74b9ff;
-      color: white;
-      font-weight: bold;
-      font-size: 1em;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-    button:hover {
-      background: #0984e3;
-    }
-    button:disabled {
-      background: #b2bec3;
-      cursor: not-allowed;
-    }
-    footer {
-      margin-top: 30px;
-      background: #f7b7a3;
-      color: white;
-      padding: 10px;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>Império Felino Idle – Surpresas</title>
+<style>
+  body { font-family: Arial,sans-serif; background:#fff8f0; margin:0; padding:0; text-align:center; color:#2d3436;}
+  header {background:#ff7675;color:white;padding:30px;font-size:2em;font-weight:bold;}
+  main {padding:20px; max-width:900px;margin:auto;}
+  .contador {font-size:1.5em;margin:20px 0;}
+  .loja,.rebirth {background:white;margin:20px auto;padding:20px;border-radius:15px;box-shadow:0 3px 8px rgba(0,0,0,0.1); text-align:left;}
+  h2 {color:#e17055;}
+  button {display:block;width:100%;margin:10px 0;padding:10px;border:none;border-radius:8px;background:#74b9ff;color:white;font-weight:bold;font-size:1em;cursor:pointer;transition:.3s;}
+  button:hover{background:#0984e3;}
+  button:disabled{background:#b2bec3;cursor:not-allowed;}
+  footer{margin-top:30px;background:#f7b7a3;color:white;padding:10px;}
+</style>
 </head>
 <body>
-  <header>🐾 Idle Game do Império Felino 🐾</header>
-  <main>
-    <div class="contador">
-      <p>Latas de Atum: <span id="latas">0</span></p>
-      <p>Produção: <span id="lps">1</span> latas/s</p>
-      <p>Multiplicador: x<span id="mult">1</span></p>
-    </div>
+<header>🐾 Império Felino Idle – Surpresas Felinas 🐾</header>
+<main>
+<div class="contador">
+<p>Latas de Atum: <span id="latas">0</span></p>
+<p>Produção: <span id="lps">1</span> latas/s</p>
+<p>Multiplicador: x<span id="mult">1</span></p>
+</div>
 
-    <div class="loja">
-      <h2>Loja Felina</h2>
-      <div id="loja-botoes"></div>
-    </div>
+<div class="loja">
+<h2>Loja Felina</h2>
+<div id="loja-botoes"></div>
+</div>
 
-    <div class="rebirth">
-      <h2>Rebirth</h2>
-      <p>Renascendo você perde tudo, mas ganha um multiplicador permanente de produção!</p>
-      <button onclick="rebirth()">Fazer Rebirth – Precisa de 100.000 latas</button>
-    </div>
-  </main>
-  <footer>
-    © 2025 Império Felino – Só quem tem atum é respeitado 🐟
-  </footer>
+<div class="rebirth">
+<h2>Rebirth</h2>
+<p>Renascendo você perde tudo, mas ganha multiplicador permanente de produção!</p>
+<button onclick="rebirth()">Fazer Rebirth – Precisa de 100.000 latas</button>
+</div>
+</main>
+<footer>© 2025 Império Felino – Surpresas e latas obrigatórias 🐟</footer>
 
-  <script>
-    let game = {
-      latas: 0,
-      lps: 1,
-      mult: 1,
-      upgrades: {
-        cacador: { nome: "Gato Caçador", qtd: 0, bonus: 1, custo: 50 },
-        exercito: { nome: "Exército de Gatos", qtd: 0, bonus: 10, custo: 500 },
-        fabrica: { nome: "Fábrica de Sachê", qtd: 0, bonus: 50, custo: 5000 },
-        engenheiro: { nome: "Gato Engenheiro", qtd: 0, bonus: 200, custo: 20000 },
-        imperio: { nome: "Império Felino Mundial", qtd: 0, bonus: 1000, custo: 100000 },
-        estatua: { nome: "Estátua de Ouro do Gato Supremo", qtd: 0, bonus: 10000, custo: 1000000 }
-      }
-    };
+<script>
+let game = {
+  latas:0,
+  lps:1,
+  mult:1,
+  upgrades:{
+    cacador:{nome:"Gato Caçador",qtd:0,bonus:1,custo:50},
+    exercito:{nome:"Exército de Gatos",qtd:0,bonus:10,custo:500},
+    fabrica:{nome:"Fábrica de Sachê",qtd:0,bonus:50,custo:5000},
+    engenheiro:{nome:"Gato Engenheiro",qtd:0,bonus:200,custo:20000},
+    imperio:{nome:"Império Felino Mundial",qtd:0,bonus:1000,custo:100000},
+    estatua:{nome:"Estátua de Ouro do Gato Supremo",qtd:0,bonus:10000,custo:1000000},
+    astronauta:{nome:"Gato Astronauta",qtd:0,bonus:50000,custo:5000000},
+    cientista:{nome:"Gato Cientista Louco",qtd:0,bonus:200000,custo:20000000},
+    imperador:{nome:"Imperador Felino",qtd:0,bonus:1000000,custo:100000000},
+    dragao:{nome:"Dragão Felino",qtd:0,bonus:5000000,custo:500000000},
+    torre:{nome:"Torre de Arranhões",qtd:0,bonus:20000000,custo:2000000000},
+    templo:{nome:"Templo dos Miados",qtd:0,bonus:100000000,custo:10000000000},
+    nave:{nome:"Nave Espacial Felina",qtd:0,bonus:500000000,custo:50000000000},
+    deus:{nome:"Deus Felino",qtd:0,bonus:2000000000,custo:200000000000},
+    oraculo:{nome:"Oráculo dos Gatos",qtd:0,bonus:10000000000,custo:1000000000000},
+    imperio2:{nome:"Império Felino II",qtd:0,bonus:50000000000,custo:5000000000000},
+    gatozord:{nome:"Megazord Felino",qtd:0,bonus:200000000000,custo:20000000000000},
+    universo:{nome:"Senhor do Universo Felino",qtd:0,bonus:1000000000000,custo:100000000000000},
+    omni:{nome:"Omnigato Supremo",qtd:0,bonus:5000000000000,custo:500000000000000},
+    cosmos:{nome:"Cosmos Felino",qtd:0,bonus:20000000000000,custo:2000000000000000}
+  }
+};
 
-    function atualizarTela() {
-      document.getElementById("latas").textContent = Math.floor(game.latas);
-      document.getElementById("lps").textContent = game.lps * game.mult;
-      document.getElementById("mult").textContent = game.mult;
+function atualizarTela(){
+  document.getElementById("latas").textContent=Math.floor(game.latas);
+  document.getElementById("lps").textContent=game.lps*game.mult;
+  document.getElementById("mult").textContent=game.mult;
 
-      let lojaHTML = "";
-      for (let key in game.upgrades) {
-        let up = game.upgrades[key];
-        lojaHTML += `<button onclick="comprarUpgrade('${key}')" ${game.latas < up.custo ? "disabled" : ""}>
-          ${up.nome} (x${up.qtd}) [+${up.bonus}/s] – Custa ${up.custo}
-        </button>`;
-      }
-      document.getElementById("loja-botoes").innerHTML = lojaHTML;
+  let lojaHTML="";
+  for(let key in game.upgrades){
+    let up=game.upgrades[key];
+    lojaHTML+=`<button onclick="comprarUpgrade('${key}')" ${game.latas<up.custo?"disabled":""}>
+      ${up.nome} (x${up.qtd}) [+${up.bonus}/s] – Custa ${up.custo}
+    </button>`;
+  }
+  document.getElementById("loja-botoes").innerHTML=lojaHTML;
+}
+
+function loop(){game.latas+=game.lps*game.mult; atualizarTela(); salvar();}
+setInterval(loop,1000);
+
+function comprarUpgrade(tipo){
+  let up=game.upgrades[tipo];
+  if(game.latas>=up.custo){
+    game.latas-=up.custo;
+    game.lps+=up.bonus;
+    up.qtd++;
+    up.custo=Math.floor(up.custo*1.5);
+    atualizarTela();
+    salvar();
+  }
+}
+
+function rebirth(){
+  if(game.latas>=100000){
+    game.latas=0;
+    game.lps=1;
+    for(let key in game.upgrades){
+      game.upgrades[key].qtd=0;
+      const precosDefault={
+        cacador:50,exercito:500,fabrica:5000,engenheiro:20000,imperio:100000,
+        estatua:1000000,astronauta:5000000,cientista:20000000,imperador:100000000,
+        dragao:500000000,torre:2000000000,templo:10000000000,nave:50000000000,
+        deus:2000000000,oraculo:1000000000000,imperio2:5000000000000,gatozord:20000000000000,
+        universo:1000000000000,omni:500000000000000,cosmos:2000000000000000
+      };
+      if(precosDefault[key]) game.upgrades[key].custo=precosDefault[key];
     }
+    game.mult++;
+    alert("Você renasceu! Multiplicador agora é x"+game.mult+"!");
+    atualizarTela();
+    salvar();
+  }
+}
 
-    function loop() {
-      game.latas += game.lps * game.mult;
-      atualizarTela();
-      salvar();
-    }
-    setInterval(loop, 1000);
-
-    function comprarUpgrade(tipo) {
-      let up = game.upgrades[tipo];
-      if (game.latas >= up.custo) {
-        game.latas -= up.custo;
-        game.lps += up.bonus;
-        up.qtd++;
-        up.custo = Math.floor(up.custo * 1.5);
-        atualizarTela();
-        salvar();
-      }
-    }
-
-    function rebirth() {
-      if (game.latas >= 100000) {
-        game.latas = 0;
-        game.lps = 1;
-        for (let key in game.upgrades) {
-          game.upgrades[key].qtd = 0;
-          game.upgrades[key].custo = {
-            cacador: 50, exercito: 500, fabrica: 5000,
-            engenheiro: 20000, imperio: 100000, estatua: 1000000
-          }[key];
-        }
-        game.mult++;
-        alert("Você renasceu! Seu poder de produção agora é multiplicado por " + game.mult + "!");
-        atualizarTela();
-        salvar();
-      }
-    }
-
-    function salvar() {
-      localStorage.setItem("idleFelinoSave", JSON.stringify(game));
-    }
-
-    function carregar() {
-      let dados = localStorage.getItem("idleFelinoSave");
-      if (dados) {
-        game = JSON.parse(dados);
-      }
-      atualizarTela();
-    }
-
-    window.onload = carregar;
-  </script>
+function salvar(){localStorage.setItem("idleFelinoSave",JSON.stringify(game));}
+function carregar(){let dados=localStorage.getItem("idleFelinoSave"); if(dados){game=JSON.parse(dados);} atualizarTela();}
+window.onload=carregar;
+</script>
 </body>
 </html>
+
 
